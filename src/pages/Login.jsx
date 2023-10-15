@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import bg from "../assets/images/more/login.jpg";
 import Swal from "sweetalert2";
 import { useContext } from "react";
@@ -6,6 +6,9 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +18,15 @@ const Login = () => {
 
     login(email, password)
       .then((res) => {
+        if(res.user){
+          Swal.fire({
+            title: "Success!",
+            text: "Successfully User Logged in",
+            icon: "success",
+            confirmButtonText: "Done",
+          });
+          return navigate(location?.state ? location.state : '/')
+        }
         console.log(res.user);
         const user = {
           email,
@@ -37,12 +49,12 @@ const Login = () => {
             }
           });
 
-        Swal.fire({
-          title: "Success!",
-          text: "Successfully User Logged in",
-          icon: "success",
-          confirmButtonText: "Done",
-        });
+        // Swal.fire({
+        //   title: "Success!",
+        //   text: "Successfully User Logged in",
+        //   icon: "success",
+        //   confirmButtonText: "Done",
+        // });
         form.reset();
       })
       .catch((err) => console.log(err));

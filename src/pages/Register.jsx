@@ -17,6 +17,7 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
+      
         updatedUser(name, photo)
           .then(() => {
             console.log("profile updated");

@@ -17,11 +17,12 @@ const Navbar = () => {
       <li className="text-xl bg-transparent hover:text-yellow-200">
         <NavLink to="/addCoffee">Add Coffee</NavLink>
       </li>
-      <li className="text-xl bg-transparent hover:text-yellow-200">
-        <NavLink to="/register">Register</NavLink>
-      </li>
+
       <li className="text-xl bg-transparent hover:text-yellow-200">
         <NavLink to="/users">All Users</NavLink>
+      </li>
+      <li className="text-xl bg-transparent hover:text-yellow-200">
+        <NavLink to="/register">Register</NavLink>
       </li>
     </>
   );
